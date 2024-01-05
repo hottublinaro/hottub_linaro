@@ -51,6 +51,9 @@ class Main_Besgo():
             
         elif str(besgo_setting_json[0]['backwash_mode']) == "2":
             print("backwash AUTO")
+            if relay8[4] == True:
+                print("WORKING XXXXXXXXXXXXXXXXXXXXXXXXX WORKING")
+                mod_besgo.close_all_working(relay8)
             for item in besgo_json:
                 time_set = item.split('-')
                 if current_time >= time_set[0] and current_time <= time_set[0]:
@@ -67,8 +70,7 @@ class Main_Besgo():
                                     write_status_besgo.write("True")
                                     write_status_besgo.close()
                                 self.status_working = "working"
-                        if relay8[4] == True:
-                            mod_besgo.close_all_working(relay8)
+                       
                 elif current_time >= time_set[1]:
                     print("ไม่ทำงาน besgo")
                     if relay8[4] == True:
