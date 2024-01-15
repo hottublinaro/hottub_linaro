@@ -69,6 +69,19 @@ class Main_PLC():
             print("Filtration Auto Mode")
             if str(data_time_status[int(self.current_hour)]) != "0":
                 self.auto_filtration_working(data_time_status[int(self.current_hour)], status_plc_out, data_json, data_setting)
+            else:
+                print('close all')
+                read_status_heater = open('/home/linaro/txt_file/status_working_heater.txt','r')
+                set_heater_text = read_status_heater.readline().strip()
+                if str(set_heater_text)  == "False":
+                    if status_plc_out[0] == True:
+                        mod.stop_filtration()
+                    if status_plc_out[0] == False:
+                        if status_plc_out[1] == True:
+                            mod.stop_ozone_pump()
+                        if status_plc_out[1] == False:
+                            mod.stop_chauffage()
+
                
           
         else :
@@ -89,16 +102,16 @@ class Main_PLC():
         if str(data_time_status) != "0":
             if status_plc_out[0] == False:
                 mod.start_filtration()
-
-            if str(data_json[0]['sm_ozone_choc']) == "1":
-                self.start_ozone_choc()
-            elif str(data_json[0]['sm_ozone_choc']) == "2":
-                if str(data_time_status) == "2":
+            else:
+                if str(data_json[0]['sm_ozone_choc']) == "1":
                     self.start_ozone_choc()
-                else :
+                elif str(data_json[0]['sm_ozone_choc']) == "2":
+                    if str(data_time_status) == "2":
+                        self.start_ozone_choc()
+                    else :
+                        self.close_ozone_choc()
+                elif str(data_json[0]['sm_ozone_choc']) == "0":
                     self.close_ozone_choc()
-            elif str(data_json[0]['sm_ozone_choc']) == "0":
-                self.close_ozone_choc()
         
         else:
             if str(data_json[0]['sm_ozone_choc']) == "1":
