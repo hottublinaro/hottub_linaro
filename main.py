@@ -131,7 +131,8 @@ try:
                                     else:
                                         heater.start_heater(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
 
                             if str(status_bes) == "False":
                                 main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
@@ -148,9 +149,11 @@ try:
                                     if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                         main_heatpump.start_heatpump(temperature, plc, relay_8)
                                     else:
-                                        heater.start_heater(temperature, plc, relay_8)
+                                        if int(setting_selection[0]['heater_1']) == 1:
+                                            heater.start_heater(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1: 
+                                        heater.start_heater(temperature, plc, relay_8)
 
                                 #นับเวลาตรวจสอบ pressure ไม่มีแรงดัน
                                 if plc[0] == True and relay_8[4] == False:
@@ -186,9 +189,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
 
                         if str(status_bes) == "False":
                             main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
@@ -204,9 +209,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                             
                         time.sleep(0.5)
                         volt.start_volt(setting_selection)
@@ -229,9 +236,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                         
                         if str(status_bes) == "False":
                             main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
@@ -248,9 +257,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                             if plc[0] == True and relay_8[4] == False:
                                 if float(split_set_pressure[0]) > float(read_pressure):
                                     counter_pressure = counter_pressure + 1
@@ -282,9 +293,11 @@ try:
                             if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                 main_heatpump.start_heatpump(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                         else:
-                            heater.start_heater(temperature, plc, relay_8)
+                            if int(setting_selection[0]['heater_1']) == 1:
+                                heater.start_heater(temperature, plc, relay_8)
                     if str(status_bes) == "False":
                         main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
                         main_plc.start_plc()
@@ -299,9 +312,11 @@ try:
                             if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                 main_heatpump.start_heatpump(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                         else:
-                            heater.start_heater(temperature, plc, relay_8)
+                            if int(setting_selection[0]['heater_1']) == 1:
+                                heater.start_heater(temperature, plc, relay_8)
                         
                     time.sleep(0.5)
                     volt.start_volt(setting_selection)
@@ -319,9 +334,11 @@ try:
                                     if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                         main_heatpump.start_heatpump(temperature, plc, relay_8)
                                     else:
-                                        heater.start_heater(temperature, plc, relay_8)
+                                        if int(setting_selection[0]['heater_1']) == 1:
+                                            heater.start_heater(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
 
                             if str(status_bes) == "False":
                                 main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
@@ -338,9 +355,11 @@ try:
                                     if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                         main_heatpump.start_heatpump(temperature, plc, relay_8)
                                     else:
-                                        heater.start_heater(temperature, plc, relay_8)
+                                        if int(setting_selection[0]['heater_1']) == 1:
+                                            heater.start_heater(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
 
                                 #นับเวลาตรวจสอบ pressure ไม่มีแรงดัน
                                 if plc[0] == True and relay_8[4] == False:
@@ -376,9 +395,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
 
                         if str(status_bes) == "False":
                             main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
@@ -394,9 +415,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                             
                         time.sleep(0.5)
                         volt.start_volt(setting_selection)
@@ -419,9 +442,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                         
                         if str(status_bes) == "False":
                             main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
@@ -438,9 +463,11 @@ try:
                                 if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                     main_heatpump.start_heatpump(temperature, plc, relay_8)
                                 else:
-                                    heater.start_heater(temperature, plc, relay_8)
+                                    if int(setting_selection[0]['heater_1']) == 1:
+                                        heater.start_heater(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                             if plc[0] == True and relay_8[4] == False:
                                 if float(split_set_pressure[0]) > float(read_pressure):
                                     counter_pressure = counter_pressure + 1
@@ -472,9 +499,11 @@ try:
                             if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                 main_heatpump.start_heatpump(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                         else:
-                            heater.start_heater(temperature, plc, relay_8)
+                            if int(setting_selection[0]['heater_1']) == 1:
+                                heater.start_heater(temperature, plc, relay_8)
                     if str(status_bes) == "False":
                         main_plc = Main_PLC(current_time, temperature, plc, relay_8, current_hour)
                         main_plc.start_plc()
@@ -489,9 +518,11 @@ try:
                             if int(current_hour) >= int(heatpump_split_hour_start[0])  and int(current_hour) < int(heatpump_split_hour_end[0]) :
                                 main_heatpump.start_heatpump(temperature, plc, relay_8)
                             else:
-                                heater.start_heater(temperature, plc, relay_8)
+                                if int(setting_selection[0]['heater_1']) == 1:
+                                    heater.start_heater(temperature, plc, relay_8)
                         else:
-                            heater.start_heater(temperature, plc, relay_8)
+                            if int(setting_selection[0]['heater_1']) == 1:
+                                heater.start_heater(temperature, plc, relay_8)
                         
                     time.sleep(0.5)
                     volt.start_volt(setting_selection)
