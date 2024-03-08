@@ -29,33 +29,33 @@ class Modbus_heatpump():
         except:
             pass
 
-    def open_heatpump(self):
-        try:
-            heatpump = serial.Serial(
-                    port=path_url.modbus_port,
-                    baudrate = 9600,
-                    parity=serial.PARITY_NONE,
-                    stopbits=serial.STOPBITS_ONE,
-                    bytesize=serial.EIGHTBITS,
-                    timeout=1)
-            heatpump.write(b"\x06\x05\x02\x01\xFF\x00\xDD\xF5")
-            heatpump.close()
-        except:
-            pass
+    # def open_heatpump(self):
+    #     try:
+    #         heatpump = serial.Serial(
+    #                 port=path_url.modbus_port,
+    #                 baudrate = 9600,
+    #                 parity=serial.PARITY_NONE,
+    #                 stopbits=serial.STOPBITS_ONE,
+    #                 bytesize=serial.EIGHTBITS,
+    #                 timeout=1)
+    #         heatpump.write(b"\x06\x05\x02\x01\xFF\x00\xDD\xF5")
+    #         heatpump.close()
+    #     except:
+    #         pass
         
-    def close_heatpump(self):
-        try:
-            send = serial.Serial(
-                    port=path_url.modbus_port,
-                    baudrate = 9600,
-                    parity=serial.PARITY_NONE,
-                    stopbits=serial.STOPBITS_ONE,
-                    bytesize=serial.EIGHTBITS,
-                    timeout=1)
-            send.write(b"\x06\x05\x02\x01\x00\x00\x9C\x05")
-            send.close()
-        except:
-            pass
+    # def close_heatpump(self):
+    #     try:
+    #         send = serial.Serial(
+    #                 port=path_url.modbus_port,
+    #                 baudrate = 9600,
+    #                 parity=serial.PARITY_NONE,
+    #                 stopbits=serial.STOPBITS_ONE,
+    #                 bytesize=serial.EIGHTBITS,
+    #                 timeout=1)
+    #         send.write(b"\x06\x05\x02\x01\x00\x00\x9C\x05")
+    #         send.close()
+    #     except:
+    #         pass
 
     def start_chauffage(self):
         try:

@@ -25,6 +25,7 @@ from path_url import Path_url
 sys.path.append('/home/linaro/hottub_linaro/heater/')
 from main_heater import Main_Heater
 from main_heatpump import Main_heatpump
+from modbus_heater import Modbus_heatpump
 
 
 modbus_read = Modbus_read()
@@ -36,6 +37,7 @@ heater  = Main_Heater()
 plc_mod = Modbus()
 write_file = Write_file()
 main_heatpump = Main_heatpump()
+modbus_heater = Modbus_heatpump()
 
 counter_pressure = 0
 url_setting = path_url.url_setting
@@ -178,6 +180,10 @@ try:
                             if plc[0] == False:
                                 main_relay = Main_relay(relay_8, plc[0])
                                 main_relay.start_relay()
+                                if plc[2] == True:
+                                    modbus_heater.stop_chauffage()
+                                if relay_8[7] == True:
+                                    modbus_heater.close_heatpump()
 
                             
                         time.sleep(0.5)
@@ -229,6 +235,10 @@ try:
                     if plc[0] == False:
                         main_relay = Main_relay(relay_8, plc[0])
                         main_relay.start_relay()
+                        if plc[2] == True:
+                            modbus_heater.stop_chauffage()
+                        if relay_8[7] == True:
+                            modbus_heater.close_heatpump()
                     time.sleep(0.5)
             else:
                 print("PLC NOT FALSE"+str(relay_8[4]))
@@ -281,6 +291,10 @@ try:
                         if plc[0] == False:
                             main_relay = Main_relay(relay_8, plc[0])
                             main_relay.start_relay()
+                            if plc[2] == True:
+                                modbus_heater.stop_chauffage()
+                            if relay_8[7] == True:
+                                modbus_heater.close_heatpump()
 
                         
                     time.sleep(0.5)
@@ -384,6 +398,10 @@ try:
                             if plc[0] == False:
                                 main_relay = Main_relay(relay_8, plc[0])
                                 main_relay.start_relay()
+                                if plc[2] == True:
+                                    modbus_heater.stop_chauffage()
+                                if relay_8[7] == True:
+                                    modbus_heater.close_heatpump()
 
                             
                         time.sleep(0.5)
@@ -435,6 +453,10 @@ try:
                     if plc[0] == False:
                         main_relay = Main_relay(relay_8, plc[0])
                         main_relay.start_relay()
+                        if plc[2] == True:
+                            modbus_heater.stop_chauffage()
+                        if relay_8[7] == True:
+                            modbus_heater.close_heatpump()
                     time.sleep(0.5)
             else:
                 print("PLC NOT FALSE"+str(relay_8[4]))
@@ -487,6 +509,10 @@ try:
                         if plc[0] == False:
                             main_relay = Main_relay(relay_8, plc[0])
                             main_relay.start_relay()
+                            if plc[2] == True:
+                                modbus_heater.stop_chauffage()
+                            if relay_8[7] == True:
+                                modbus_heater.close_heatpump()
 
                         
                     time.sleep(0.5)
