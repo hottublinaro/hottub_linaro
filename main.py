@@ -7,6 +7,7 @@ from modbus_read import Modbus_read
 from urllib.request import urlopen
 import json
 from close_all import Close_All
+import threading
 
 
 sys.path.append('/home/linaro/hottub_linaro/besgo/')
@@ -46,6 +47,33 @@ url_selection = path_url.url_selection
 url_heatpump = path_url.url_heatpump
 url_night_time =  path_url.url_night_time
 
+def counter_machine():
+    while True:
+        try:
+            with open('/home/linaro/txt_file/row_counter_machine.txt','r') as read_row:
+                read_row_file = read_row.readline().strip()
+            if read_row_file != '':
+                if int(read_row_file) < 60:
+                    sum_rows = int(read_row_file) + 1
+                    with open('/home/linaro/txt_file/row_counter_machine.txt','w') as write_row:
+                        write_row.write(str(sum_rows))
+                else:
+                    with open('/home/linaro/txt_file/row_counter_machine.txt','w') as write_row:
+                        write_row.write('0')
+                    with open('/home/linaro/txt_file/row_counter_machine.txt','r') as read_counter_ma:
+                        counter_ma = read_counter_ma.readline().strip()
+                        sum_counter_ma = int(counter_ma) + 1
+                    with open('/home/linaro/txt_file/row_counter_machine.txt','w') as write_counter_ma:
+                        write_counter_ma.write(str(sum_counter_ma))
+
+            else:
+                with open('/home/linaro/txt_file/row_counter_machine.txt','w') as write_row:
+                    write_row.write("0")
+            time.sleep(1)
+        except:
+            pass
+before_backwash = threading.Thread(target=counter_machine, args=())
+before_backwash.start()
 try:
     while True:
         print("WORKING HOTTUB")
