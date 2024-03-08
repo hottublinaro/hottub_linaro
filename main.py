@@ -54,15 +54,16 @@ try:
         current_minute =  system_time.strftime("%M")
         sec_time =  system_time.strftime("%S")
       
-
         response_setting = urlopen(url_setting)
         data_setting = json.loads(response_setting.read())
 
         response_setting_mode =  urlopen(url_setting_mode)
         setting_mode = json.loads(response_setting_mode.read())
 
+
         response_selection =  urlopen(url_selection)
         setting_selection = json.loads(response_selection.read())
+
         #heatpump api
         response_heatpump = urlopen(url_heatpump)
         setting_heatpump = json.loads(response_heatpump.read())
@@ -70,6 +71,7 @@ try:
         hour_end_heatpump = setting_heatpump[0]['heatpump_end']
         heatpump_split_hour_start = hour_start_heatpump.split(':')
         heatpump_split_hour_end = hour_end_heatpump.split(':')
+
 
         #night time setting url
         response_night_time = urlopen(url_night_time)
@@ -80,26 +82,30 @@ try:
         night_time_split_end = hour_end_night_time.split(':')
 
         read_pressure =  modbus_read.read_pressure()
+        print('pressure : '+str(read_pressure))
 
         relay_8 = modbus_read.read_status_relay()
-      
+        print("Relay : "+str(relay_8))
 
         #read plc
         plc = modbus_read.read_status_plc_out()
+        print('PLC  OUT : '+str(plc))
        
         plc_in = modbus_read.read_status_plc_in()
+        print('PLC IN: '+str(plc_in))
         #read temperature
         temperature = modbus_read.read_temperature()
-     
+        print('Temperature : '+str(temperature))
         # read ph
         ph = 0
         if int(setting_selection[0]['ph']) == 1:
             ph = modbus_read.read_ph()
-     
+        print("PH : "+str(ph))
         #read orp
         orp = 0
         if int(setting_selection[0]['orp']) == 1:
             orp = modbus_read.read_orp()
+        print("ORP : "+str(orp))
       
         # #write file 
 
