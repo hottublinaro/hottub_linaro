@@ -327,8 +327,8 @@ try:
                     time.sleep(0.5)
                     volt.start_volt(setting_selection)
         else:
-            if str(setting_night_time[0]['night_time_status']) == "1":
-                if int(current_hour) < int(night_time_split_start[0]) and int(current_hour) > int(night_time_split_end[0]) : 
+            if str(setting_night_time[0]['night_time_status']) == "0":
+                if int(current_hour) < 21 and int(current_hour) > 7 : 
                     print("in of time")
                     #check bypass mode
                     if str(setting_mode[0]['sm_bypass']) == "0":
