@@ -60,10 +60,10 @@ def counter_machine():
                 else:
                     with open('/home/linaro/txt_file/row_counter_machine.txt','w') as write_row:
                         write_row.write('0')
-                    with open('/home/linaro/txt_file/row_counter_machine.txt','r') as read_counter_ma:
+                    with open('/home/linaro/txt_file/counter_machine.txt','r') as read_counter_ma:
                         counter_ma = read_counter_ma.readline().strip()
                         sum_counter_ma = int(counter_ma) + 1
-                    with open('/home/linaro/txt_file/row_counter_machine.txt','w') as write_counter_ma:
+                    with open('/home/linaro/txt_file/counter_machine.txt','w') as write_counter_ma:
                         write_counter_ma.write(str(sum_counter_ma))
 
             else:
