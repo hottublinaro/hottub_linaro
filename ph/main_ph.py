@@ -77,27 +77,49 @@ class Main_PH():
     def process_ph(self, ph_json, relay8):
         read_ph = self.read_ph_address
         #อ่าน สถานะ relay
-      
-        if float(read_ph) >= float(ph_json[0]['ph_set']):
-            print("------------counter ph start---------------"+str(modbus_ph.read_ph_counter()))
-            if int(modbus_ph.read_ph_counter()) == 0:
-                print("------------counter ph start---------------"+str(relay8[5]))
-                if relay8[5] == False:
-                    print("------------counter ph start---------+++++++++++++++++++------")
-                    modbus_ph.start_ph()
-                modbus_ph.write_ph_counter()
-            else :
+        if ph_json[0]['ph_main_status'] == 'top':
+            if float(read_ph) >= float(ph_json[0]['ph_set']):
+                print("------------counter ph start---------------"+str(modbus_ph.read_ph_counter()))
+                if int(modbus_ph.read_ph_counter()) == 0:
+                    print("------------counter ph start---------------"+str(relay8[5]))
+                    if relay8[5] == False:
+                        print("------------counter ph start---------+++++++++++++++++++------")
+                        modbus_ph.start_ph()
+                    modbus_ph.write_ph_counter()
+                else :
+                    if relay8[5] == True:
+                        modbus_ph.stop_ph()
+                    modbus_ph.write_ph_counter()
+                if int(modbus_ph.read_ph_counter()) >= (int(ph_json[0]['ph_freq']) * 60) :
+                # if (int(modbus_ph.read_ph_counter()) >= 10) :
+                    modbus_ph.set_ph_counter_zero()
+                    
+            elif float(read_ph) <= float(ph_json[0]['ph_lower']):
                 if relay8[5] == True:
                     modbus_ph.stop_ph()
-                modbus_ph.write_ph_counter()
-            if int(modbus_ph.read_ph_counter()) >= (int(ph_json[0]['ph_freq']) * 60) :
-            # if (int(modbus_ph.read_ph_counter()) >= 10) :
-                modbus_ph.set_ph_counter_zero()
-                
-        elif float(read_ph) <= float(ph_json[0]['ph_lower']):
-            if relay8[5] == True:
-                modbus_ph.stop_ph()
-                modbus_ph.set_ph_counter_zero()
+                    modbus_ph.set_ph_counter_zero()
+        else:
+            if float(read_ph) <= float(ph_json[0]['ph_lower']):
+                print("------------counter ph start---------------"+str(modbus_ph.read_ph_counter()))
+                if int(modbus_ph.read_ph_counter()) == 0:
+                    print("------------counter ph start---------------"+str(relay8[5]))
+                    if relay8[5] == False:
+                        print("------------counter ph start---------+++++++++++++++++++------")
+                        modbus_ph.start_ph()
+                    modbus_ph.write_ph_counter()
+                else :
+                    if relay8[5] == True:
+                        modbus_ph.stop_ph()
+                    modbus_ph.write_ph_counter()
+                if int(modbus_ph.read_ph_counter()) >= (int(ph_json[0]['ph_freq']) * 60) :
+                # if (int(modbus_ph.read_ph_counter()) >= 10) :
+                    modbus_ph.set_ph_counter_zero()
+                    
+            elif float(read_ph) >= float(ph_json[0]['ph_set']):
+                if relay8[5] == True:
+                    modbus_ph.stop_ph()
+                    modbus_ph.set_ph_counter_zero()
+
 
     def process_orp(self, orp_json,relay8):
         read_orp = self.read_orp_address
