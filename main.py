@@ -8,6 +8,8 @@ from urllib.request import urlopen
 import json
 from close_all import Close_All
 import threading
+import SDL_DS3231
+
 
 
 sys.path.append('/home/linaro/hottub_linaro/besgo/')
@@ -47,6 +49,8 @@ url_selection = path_url.url_selection
 url_heatpump = path_url.url_heatpump
 url_night_time =  path_url.url_night_time
 
+ds3231 = SDL_DS3231.SDL_DS3231(6, 0x68)
+
 def counter_machine():
     while True:
         try:
@@ -77,7 +81,16 @@ before_backwash.start()
 try:
     while True:
         print("WORKING HOTTUB")
-        system_time = datetime.datetime.now()
+        modult_rtc = str(ds3231.read_datetime())
+        # print(get_i2c)
+        split_date_time_rtc = modult_rtc.split(" ") 
+        split_date_rtc = split_date_time_rtc[0].split("-")
+        split_time_rtc = split_date_time_rtc[1].split(":")
+        # print(split_date)
+        # print(split_time)
+        system_time = datetime.datetime(int(split_date_rtc[0]), int(split_date_rtc[1]), int(split_date_rtc[2]), int(split_time_rtc[0]), int(split_time_rtc[1]), int(split_time_rtc[2]))
+
+        # system_time = datetime.datetime.now()
         current_time = system_time.strftime("%H:%M")
         current_time_sec = system_time.strftime("%H:%M:%S")
         current_hour =  system_time.strftime("%H")

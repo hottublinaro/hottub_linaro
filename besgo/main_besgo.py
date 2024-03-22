@@ -4,6 +4,7 @@ import sys
 from setting.path_url import Path_url
 import datetime
 from modbus_besgo import Modbus_besgo
+import SDL_DS3231
 sys.path.append('/home/linaro/hottub_linaro/plc/')
 from modbus import Modbus
 
@@ -12,7 +13,7 @@ url_besgo = path_url.url_besgo
 url_besgo_setting= path_url.url_besgo_setting
 mod_besgo = Modbus_besgo()
 mod_plc = Modbus()
-
+ds3231 = SDL_DS3231.SDL_DS3231(6, 0x68)
 
 class Main_Besgo():
     status_working_besgo = False
@@ -26,7 +27,15 @@ class Main_Besgo():
 
     def start_besgo(self, current_time, set_relay8, set_plc_out, setting_mode):
       
-        system_time = datetime.datetime.now()
+        modult_rtc = str(ds3231.read_datetime())
+        # print(get_i2c)
+        split_date_time_rtc = modult_rtc.split(" ") 
+        split_date_rtc = split_date_time_rtc[0].split("-")
+        split_time_rtc = split_date_time_rtc[1].split(":")
+        # print(split_date)
+        # print(split_time)
+        system_time = datetime.datetime(int(split_date_rtc[0]), int(split_date_rtc[1]), int(split_date_rtc[2]), int(split_time_rtc[0]), int(split_time_rtc[1]), int(split_time_rtc[2]))
+
         day = system_time.strftime("%a")
         besgo_response = urlopen(url_besgo)
         besgo_json = json.loads(besgo_response.read())
