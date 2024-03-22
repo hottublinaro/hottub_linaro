@@ -45,4 +45,8 @@ class Write_file():
         with open('/home/linaro/txt_file/count_down_close_system.txt','w') as count_down_read:
             count_down_read.write('')
             count_down_read.close()
+    def write_file_datetime_rtc(self, date_time_rtc):
+         with open('/home/linaro/txt_file/time_rtc.txt','w') as write_datetime:
+            write_datetime.write(date_time_rtc)
+            
 

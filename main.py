@@ -82,6 +82,7 @@ try:
     while True:
         print("WORKING HOTTUB")
         modult_rtc = str(ds3231.read_datetime())
+        write_file.write_file_datetime_rtc(modult_rtc)
         # print(get_i2c)
         split_date_time_rtc = modult_rtc.split(" ") 
         split_date_rtc = split_date_time_rtc[0].split("-")
