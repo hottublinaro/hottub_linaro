@@ -34,7 +34,10 @@ class Modbus_PH():
 
     def read_ph_counter(self):
         read_ph = open('/home/linaro/txt_file/counter_ph.txt','r')
-        return int(read_ph.read())
+        if read_ph.readline().strip() != '':
+            return int(read_ph.read())
+        else:
+            return 0
     
     def write_ph_counter(self):
         counter_ph = self.read_ph_counter()

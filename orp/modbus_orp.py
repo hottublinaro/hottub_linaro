@@ -32,7 +32,10 @@ class Modbus_ORP():
 
     def read_orp_counter(self):
         read_orp = open('/home/linaro/txt_file/counter_orp.txt','r')
-        return int(read_orp.read())
+        if read_orp.readline().strip() != '':
+            return int(read_orp.read())
+        else:
+            return 0
     
     def write_orp_counter(self):
         counter_orp = self.read_orp_counter()
